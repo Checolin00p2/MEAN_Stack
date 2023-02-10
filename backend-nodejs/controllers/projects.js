@@ -1,6 +1,7 @@
 'use strict'
 var Project = require('../models/projects')
 var fs = require('fs');
+const { exists } = require('../models/projects');
 var controller = {
     home: function(req,res){
         return res.status(200).send({
@@ -95,7 +96,15 @@ var controller = {
             return res.status(200).send({files:fileName});
         }
     },
-
+    getImageFile: function(req,res){
+    var file = req.params.file;
+    var path_file = './uploads/'+files;
+        fs.exists(path,(exists)=>{
+            if (exists) {
+                return res.sendFile(path.resolve(path_file));
+            }
+        })
+    }
 };
 
 module.exports = controller;
