@@ -1,6 +1,7 @@
 'use strict'
 var Project = require('../models/projects')
 var fs = require('fs');
+var path = require('path');
 const { exists } = require('../models/projects');
 var controller = {
     home: function(req,res){
@@ -52,9 +53,10 @@ var controller = {
         })
     },
     updateProject: function(req,res){
+        
         var projectId=req.params.id;
         var update= req.body;
-
+        
         Project.findOneAndUpdate(projectId,update,{new:true},(err,projectUpdated)=>{
             if(err){return res.status(500).send({message:'Error al Actualizar :'+err})};
             if(!projectUpdated){return res.status(404).send({message:'No existe el proyecto a actualizar'})};
@@ -70,7 +72,9 @@ var controller = {
         });
     },
     uploadImage:function(req,res){
+        
         var projectId=req.params.id;
+        
         var fileName='Imagen no subida...';
 
         if(req.files){
@@ -97,11 +101,16 @@ var controller = {
         }
     },
     getImageFile: function(req,res){
-    var file = req.params.file;
-    var path_file = './uploads/'+files;
-        fs.exists(path,(exists)=>{
+        
+    var file = req.params.image;
+    var path_file = './uploads/'+file;
+        fs.exists(path_file,(exists)=>{
             if (exists) {
                 return res.sendFile(path.resolve(path_file));
+            }else{
+                return res.status(200).send({
+                    message:"No existe la imagen"
+                });
             }
         })
     }

@@ -83,6 +83,7 @@ header #logo a:hover{
 /*Contenedor principal*/
 #content{
     min-height: 75vh;
+    height: auto;
     width: 75%;
     margin: 0px auto;
     box-shadow: 0px 0px 40px black;
@@ -142,8 +143,23 @@ article.about{
 
 /*Seccion Formulario*/
 .container{
+    height: fit-content;
     padding: 50px;
     padding-top: 10px;
+}
+
+.container .image{
+    float: left;
+    width:49%;
+}
+.container .image img{
+    width:100%;
+}
+
+.container .data{
+    float: left;
+    width: 49%;
+    margin-left:2%;
 }
 
 .container h2{
@@ -169,7 +185,8 @@ form textarea{
     width: 40%;
     padding: 5px;
 }
-form input[type='submit']{
+form input[type='submit'],
+.button-delete,.button-edit{
     display: block;
     font-size: 17px;
     padding: 10px;
@@ -178,6 +195,28 @@ form input[type='submit']{
     background: rgba(16, 111, 227,1);
     border: 1px solid rgba(5, 44, 92, 1);
     cursor: pointer;
+}
+.button-delete,.button-edit{
+    width: 20%;
+    float: left;
+    margin-right: 10px;
+    text-decoration: none;
+}
+.button-edit{
+    background: orange;
+    opacity: 0.6;
+    
+}
+.button-delete{
+    background: red;
+    opacity: 0.6;
+    
+}
+.button-edit:hover{
+    opacity: 1;
+}
+.button-delete:hover{
+    opacity: 1;
 }
 
 form input[type='submit']:hover{
@@ -210,4 +249,34 @@ form input[disabled]{
 .failed{
     background: red;
     color: white;
+}
+
+/*Pagina Proyectos*/
+
+.project{
+    list-style: none;
+    display: block;
+    float: left;
+    width: 30%;
+    text-align: center;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 30px;
+}
+.project .image{
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+.project img{
+    width: 100%;
+}
+
+.project a{
+    text-decoration: none;
+    color: black;
+}
+.project a:hover{
+    background: white;
+    opacity: 0.6;
 }

@@ -10,7 +10,7 @@ import { Global } from 'src/app/services/global';
   providers:[ProjectService]
 })
 export class ProjectsComponent implements OnInit{
-
+  public url:string="";
   public projects: Project[]=[];
 
   constructor(
@@ -20,6 +20,7 @@ export class ProjectsComponent implements OnInit{
   }
 
   ngOnInit(){
+    this.url=Global.url;
     this.getProjects();
   }
 
@@ -28,6 +29,7 @@ export class ProjectsComponent implements OnInit{
       response=>{
         if(response.projects){
           this.projects=response.projects;
+          
         }
       },error=>{
         console.log(<any>error);
