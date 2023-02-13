@@ -1,5 +1,5 @@
 import { Component,OnInit} from '@angular/core';
-import { Project } from 'src/app/models/project';
+import { Project,Project_id } from 'src/app/models/project';
 import { ProjectService } from 'src/app/services/project.service';
 import { UploadService } from 'src/app/services/upload.service';
 import { Global } from 'src/app/services/global';
@@ -33,7 +33,6 @@ export class EditComponent implements OnInit{
   ngOnInit(){
     this._route.params.subscribe(params=>{
       let id = params['id'];
-
       this.getProject(id);
     });
     
@@ -51,13 +50,16 @@ export class EditComponent implements OnInit{
 
   }
   onSubmit(){
+    console.log(this._projectService.updateProject(this.project));
     this._projectService.updateProject(this.project).subscribe(
       response=>{
+        
         if (response.project) {
           
           if (this.filesToUpload) {
             this._uploadService.makeFileRequest(Global.url+"upload-image/"+response.project._id,[],this.filesToUpload,'image').
           then((result:any)=>{
+            console.log(result.project);
             this.save_project = result.project;
             this.status='success';
             

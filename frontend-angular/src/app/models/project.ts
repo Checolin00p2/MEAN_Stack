@@ -11,3 +11,16 @@ export class Project{
 
     }
 }
+export class Project_id{
+    constructor(
+        public name: string,
+        public descripcion: string,
+        public categoria: string,
+        public langs: string,
+        public year: number,
+        public image: string,
+    ){
+
+    }
+
+}

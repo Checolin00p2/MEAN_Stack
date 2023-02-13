@@ -56,7 +56,6 @@ var controller = {
         
         var projectId=req.params.id;
         var update= req.body;
-        
         Project.findOneAndUpdate(projectId,update,{new:true},(err,projectUpdated)=>{
             if(err){return res.status(500).send({message:'Error al Actualizar :'+err})};
             if(!projectUpdated){return res.status(404).send({message:'No existe el proyecto a actualizar'})};
